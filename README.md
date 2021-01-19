@@ -3,4 +3,6 @@ VR Tools is an auxiliary set of virtual reality tools for godot development, inc
 
 This asset also includes Mux123's OpenVR addon.
 
-New features and tools coming soon
+New features, documentation and tools coming soon
+
+Current version: 0.1
