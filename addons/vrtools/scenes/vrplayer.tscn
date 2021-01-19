@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://addons/vrtools/scenes/vrplayer.gd" type="Script" id=1]
+[ext_resource path="res://addons/vrtools/tools/pointer.gd" type="Script" id=2]
+[ext_resource path="res://addons/vrtools/tools/teleporter.gd" type="Script" id=3]
+[ext_resource path="res://addons/vrtools/tools/grabber.gd" type="Script" id=4]
+[ext_resource path="res://addons/vrtools/thirdparty/LineRenderer/LineRenderer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/vrtools/materials/unshaded.tres" type="Material" id=6]
+[ext_resource path="res://addons/vrtools/tools/interactor.gd" type="Script" id=7]
+[ext_resource path="res://addons/vrtools/tools/controllermodel.gd" type="Script" id=8]
+
+[sub_resource type="SphereShape" id=1]
+radius = 0.1
+
+[node name="ARVROrigin" type="ARVROrigin"]
+script = ExtResource( 1 )
+
+[node name="ARVRCamera" type="ARVRCamera" parent="."]
+
+[node name="ARVRController" type="ARVRController" parent="."]
+
+[node name="Teleporter" type="Spatial" parent="ARVRController"]
+script = ExtResource( 3 )
+avaibleColor = Color( 0.101961, 1, 0, 1 )
+
+[node name="LineRenderer" parent="ARVRController/Teleporter" instance=ExtResource( 5 )]
+material_override = ExtResource( 6 )
+points = [  ]
+startThickness = 0.01
+endThickness = 0.01
+
+[node name="TeleportMarker" type="CSGCombiner" parent="ARVRController/Teleporter"]
+visible = false
+material_override = ExtResource( 6 )
+
+[node name="CSGTorus" type="CSGTorus" parent="ARVRController/Teleporter/TeleportMarker"]
+transform = Transform( 0.1, 0, 0, 0, 0.05, 0, 0, 0, 0.1, 0, 0, 0 )
+
+[node name="CSGPolygon" type="CSGPolygon" parent="ARVRController/Teleporter/TeleportMarker"]
+transform = Transform( -1.62921e-07, 1, -1.62921e-07, 0, -1.62921e-07, -1, -1, -1.62921e-07, 2.65431e-14, 0, -0.025, 0 )
+polygon = PoolVector2Array( 0.25, -0.25, 0.3, -0.27, 0.4, 0, 0.3, 0.27, 0.25, 0.25, 0.35, 0 )
+depth = 0.05
+
+[node name="Grabber" type="Spatial" parent="ARVRController"]
+script = ExtResource( 4 )
+
+[node name="DetectionArea" type="Area" parent="ARVRController/Grabber"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ARVRController/Grabber/DetectionArea"]
+shape = SubResource( 1 )
+
+[node name="Pointer" type="Spatial" parent="ARVRController"]
+script = ExtResource( 2 )
+
+[node name="Interactor" type="Spatial" parent="ARVRController"]
+script = ExtResource( 7 )
+button_index = 0
+
+[node name="DetectionArea" type="Area" parent="ARVRController/Interactor"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ARVRController/Interactor/DetectionArea"]
+shape = SubResource( 1 )
+
+[node name="ControllerModel" type="MeshInstance" parent="ARVRController"]
+script = ExtResource( 8 )
+
+[node name="ARVRController2" type="ARVRController" parent="."]
+controller_id = 2
+
+[node name="Teleporter" type="Spatial" parent="ARVRController2"]
+script = ExtResource( 3 )
+avaibleColor = Color( 0.172549, 1, 0, 1 )
+
+[node name="LineRenderer" parent="ARVRController2/Teleporter" instance=ExtResource( 5 )]
+material_override = ExtResource( 6 )
+points = [  ]
+startThickness = 0.01
+endThickness = 0.01
+
+[node name="TeleportMarker" type="CSGCombiner" parent="ARVRController2/Teleporter"]
+visible = false
+material_override = ExtResource( 6 )
+
+[node name="CSGTorus" type="CSGTorus" parent="ARVRController2/Teleporter/TeleportMarker"]
+transform = Transform( 0.1, 0, 0, 0, 0.05, 0, 0, 0, 0.1, 0, 0, 0 )
+
+[node name="CSGPolygon" type="CSGPolygon" parent="ARVRController2/Teleporter/TeleportMarker"]
+transform = Transform( -1.62921e-07, 1, -1.62921e-07, 0, -1.62921e-07, -1, -1, -1.62921e-07, 2.65431e-14, 0, -0.025, 0 )
+polygon = PoolVector2Array( 0.25, -0.25, 0.3, -0.27, 0.4, 0, 0.3, 0.27, 0.25, 0.25, 0.35, 0 )
+depth = 0.05
+
+[node name="Grabber" type="Spatial" parent="ARVRController2"]
+script = ExtResource( 4 )
+
+[node name="DetectionArea" type="Area" parent="ARVRController2/Grabber"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ARVRController2/Grabber/DetectionArea"]
+shape = SubResource( 1 )
+
+[node name="Pointer" type="Spatial" parent="ARVRController2"]
+script = ExtResource( 2 )
+
+[node name="Interactor" type="Spatial" parent="ARVRController2"]
+script = ExtResource( 7 )
+
+[node name="DetectionArea" type="Area" parent="ARVRController2/Interactor"]
+
+[node name="CollisionShape" type="CollisionShape" parent="ARVRController2/Interactor/DetectionArea"]
+shape = SubResource( 1 )
+
+[node name="ControllerModel" type="MeshInstance" parent="ARVRController2"]
+script = ExtResource( 8 )
