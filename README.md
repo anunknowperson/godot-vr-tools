@@ -1,6 +1,4 @@
 # VR Tools
-https://youtu.be/rJkCUci38Ss
-
 VR Tools is an auxiliary set of virtual reality tools for godot development, including such useful nodes as teleportation, grabbing, and the world space user interface.
 
 This asset also includes Mux123's OpenVR addon.
@@ -24,3 +22,5 @@ If you find a bug, please report it to the issues section on github.
 New features, documentation and tools coming soon
 
 Current version: 0.1
+
+See this in action: https://youtu.be/rJkCUci38Ss
