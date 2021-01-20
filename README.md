@@ -23,4 +23,4 @@ New features, documentation and tools coming soon
 
 Current version: 0.1
 
-See this in action: https://youtu.be/rJkCUci38Ss
+See this in action: https://youtu.be/6k7RWXen0v0
