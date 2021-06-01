@@ -37,7 +37,7 @@ func _input(event):
 			if event.axis == 1: 
 				controller_y = event.axis_value
 				
-				if event.axis_value > 0.9:
+				if event.axis_value > 0.7:
 					if not button_pressed:
 						begin_teleport()
 						
