@@ -11,7 +11,7 @@ You can set this node as a child of the surface (StaticBody or CSG with enabled 
 ARVRGrabbable
 You can set this node as a child of the Rigidbody that should interact with the controller. In the parameters, the node needs to specify the path to MeshInstance in order for the highlighting effect to work.
 ARVRUI
-This node allows you to create interfaces based on Control. It cannot be added to the scene directly from the editor. Better take the ARVRUI blank from the scenes folder. All you have to do is also add this node to the child objects of the Control node with its controls and specify the path to it in the inspector.
+This node allows you to create interfaces based on Control. It cannot be added to the scene directly from the editor. Better take the ARVRUI blank from the scenes folder. All you have to do is add you Control to the ARVRUI node. Attention: Control's Anchor should always be 0, 0, 0, 0.
 
 The plugin also contains many nodes from the controller side, but I will not consider them here, because they are already configured by default.
 
