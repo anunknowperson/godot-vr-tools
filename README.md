@@ -21,6 +21,6 @@ If you find a bug, please report it to the issues section on github.
 
 New features, documentation and tools coming soon
 
-Current version: 0.1
+Current version: 1.0
 
 See this in action: https://youtu.be/6k7RWXen0v0
