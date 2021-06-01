@@ -5,6 +5,7 @@ export (int) var point_count := 30
 export (float) var arcDistance :float = 10.0
 export (float) var arcDuration :float = 3.0
 export (float) var arcScale :float = 1.0
+export (float) var pointerSize :float = 0.5
 
 export (Color) var avaibleColor :Color = Color.white
 export (Color) var notAvaibleColor :Color = Color.red
@@ -27,6 +28,9 @@ func _enter_tree():
 		teleport_marker = $TeleportMarker
 		teleport_marker.get_parent().remove_child(teleport_marker)
 		get_parent().get_parent().call_deferred("add_child", teleport_marker)
+		
+		$LineRenderer.startThickness *= ARVRServer.world_scale
+		$LineRenderer.endThickness *= ARVRServer.world_scale
 
 func _input(event):
 	if event.device + 1 != get_parent().controller_id:
@@ -37,7 +41,7 @@ func _input(event):
 			if event.axis == 1: 
 				controller_y = event.axis_value
 				
-				if event.axis_value > 0.7:
+				if event.axis_value > 0.9:
 					if not button_pressed:
 						begin_teleport()
 						
@@ -58,7 +62,8 @@ func end_teleport():
 	$LineRenderer.hide()
 	teleport_marker.hide()
 	if good:
-		get_parent().get_parent().global_transform = teleport_transform
+		get_parent().get_parent().global_transform.origin = teleport_transform.origin
+		get_parent().get_parent().global_transform.basis = teleport_transform.basis.orthonormalized()
 
 		var bady = get_parent().get_parent().get_node("ARVRCamera").rotation.y
 		
@@ -108,7 +113,10 @@ func process_teleport():
 	temp.y = teleport_point.y
 	teleport_marker.look_at(temp, Vector3(0, 1, 0))
 	teleport_marker.rotate(Vector3(0, 1, 0), PI + Vector2(0, 1).angle_to(Vector2(controller_x, controller_y).normalized()))
+	teleport_marker.scale = Vector3(ARVRServer.world_scale, ARVRServer.world_scale, ARVRServer.world_scale) * pointerSize
 	teleport_transform = teleport_marker.global_transform
+	
+	
 	
 	if not check:
 		teleport_marker.hide()
